@@ -57,10 +57,6 @@ function is_dst(datetime, thresholds) {
   return dst_is_reversed
 }
 
-Date.prototype.isDST = function(thresholds) {
-  return is_dst(this, thresholds) 
-}
-
 is_dst.find_thresholds = find_dst_thresholds
 
 if(typeof module !== 'undefined') {
