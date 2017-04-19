@@ -1,5 +1,5 @@
 {
-  "name": "dst",
+  "name": "@jcoreio/dst",
   "version": "0.0.4",
   "author": "Chris Dickinson <chris@neversaw.us>",
   "description": "determine if a date is in daylight savings time",
