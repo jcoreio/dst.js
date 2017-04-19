@@ -9,7 +9,7 @@ suite("dst", function() {
     // let's just grab a "best guess" case for which hemisphere of the
     // earth we're in.
     var is_northern_hemisphere = new Date(2012, 0, 1, 0, 0).getTimezoneOffset() > new Date(2012, 6, 1, 0, 0).getTimezoneOffset()
-      , okay = function(x, tf) { return x.isDST() === (tf === is_northern_hemisphere) }
+      , okay = function(x, tf) { return is_dst(x) === (tf === is_northern_hemisphere) }
 
     okay(new Date(2012, 12, 1), false)
     okay(new Date(2012, 1,  1), false)
@@ -32,7 +32,7 @@ suite("dst", function() {
     })
 
     suite("mock getTimezoneOffset", function() {
-      var old = Date.prototype.getTimezoneOffset()
+      var old = Date.prototype.getTimezoneOffset
       setup(function() {
         Date.prototype.getTimezoneOffset = function() { return 0 }
       })
@@ -57,6 +57,6 @@ suite("dst", function() {
 
   test("make sure dates in the past work", function() {
     var is_northern_hemisphere = new Date(2012, 0, 1, 0, 0).getTimezoneOffset() > new Date(2012, 6, 1, 0, 0).getTimezoneOffset()
-    assert.equal(new Date(2010,11, 1, 18, 3, 59, 888).isDST(), !is_northern_hemisphere)
+    assert.equal(is_dst(new Date(2010,11, 1, 18, 3, 59, 888)), !is_northern_hemisphere)
   })
 })
