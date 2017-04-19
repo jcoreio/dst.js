@@ -1,4 +1,4 @@
-;(function() {
+'use strict'
 
 // so, the only way we (reliably) get access to DST in javascript
 // is via `Date#getTimezoneOffset`.
@@ -6,7 +6,7 @@
 // this value will switch for a given date based on the presence or absence
 // of DST at that date.
 
-function find_dst_threshold (near, far) {
+function find_dst_threshold(near, far) {
   var near_date = new Date(near)
     , far_date = new Date(far)
     , near_offs = near_date.getTimezoneOffset()
@@ -59,10 +59,4 @@ function is_dst(datetime, thresholds) {
 
 is_dst.find_thresholds = find_dst_thresholds
 
-if(typeof module !== 'undefined') {
-  module.exports = is_dst
-} else {
-  window.is_dst = is_dst 
-}
-
-})()
+module.exports = is_dst
